@@ -1,18 +1,23 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ul>
+      <li v-for="item in this.$store.state.productList" :key="item.name">
+        {{item.name}} {{item.price}}KR MY DUDE 
+        <button @click="addItem(item.name)">Add to cart</button>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
+  methods: {
+    addItem(itemName){
+      this.$store.commit("addItem", itemName)
+    }
+  },
   name: 'Home',
-  components: {
-    HelloWorld
-  }
 }
 </script>
